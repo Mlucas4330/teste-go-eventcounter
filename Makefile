@@ -16,7 +16,7 @@ build-generator:
 build-consumer:
 	go build -o bin/consumer ./cmd/consumer
 
-generate-consumer: build-consumer
+consumer-publish: build-consumer
 	bin/consumer -amqp-url="amqp://guest:guest@localhost:$(AMQP_PORT)" -amqp-exchange="$(EXCHANGE)" -amqp-declare-queue=true
 
 generator-publish: build-generator
