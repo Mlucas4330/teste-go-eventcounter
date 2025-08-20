@@ -9,8 +9,9 @@ env-up:
 env-down:
 	docker rm -f evencountertest-rabbitmq
 
+# no windows não estava funcionando, por isso modifiquei
 build-generator:
-	go build -o bin/generator cmd/generator/*.go
+	go build -o bin/generator ./cmd/generator
 
 generator-publish: build-generator
 	bin/generator -publish=true -size=100 -amqp-url="amqp://guest:guest@localhost:$(AMQP_PORT)" -amqp-exchange="$(EXCHANGE)" -amqp-declare-queue=true

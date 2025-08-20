@@ -13,7 +13,7 @@ type Consumer interface {
 }
 
 type ConsumerWrapper struct {
-	consumer Consumer
+	Consumer Consumer
 }
 
 func (c *ConsumerWrapper) randomSleep() {
@@ -22,15 +22,15 @@ func (c *ConsumerWrapper) randomSleep() {
 
 func (c *ConsumerWrapper) Created(ctx context.Context, uid string) error {
 	c.randomSleep()
-	return c.Created(ctx, uid)
+	return c.Consumer.Created(ctx, uid)
 }
 
 func (c *ConsumerWrapper) Updated(ctx context.Context, uid string) error {
 	c.randomSleep()
-	return c.Updated(ctx, uid)
+	return c.Consumer.Updated(ctx, uid)
 }
 
 func (c *ConsumerWrapper) Deleted(ctx context.Context, uid string) error {
 	c.randomSleep()
-	return c.Deleted(ctx, uid)
+	return c.Consumer.Deleted(ctx, uid)
 }
