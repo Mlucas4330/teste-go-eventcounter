@@ -13,6 +13,12 @@ env-down:
 build-generator:
 	go build -o bin/generator ./cmd/generator
 
+build-consumer:
+	go build -o bin/consumer ./cmd/consumer
+
+generate-consumer: build-consumer
+	bin/consumer -amqp-url="amqp://guest:guest@localhost:$(AMQP_PORT)" -amqp-exchange="$(EXCHANGE)" -amqp-declare-queue=true
+
 generator-publish: build-generator
 	bin/generator -publish=true -size=100 -amqp-url="amqp://guest:guest@localhost:$(AMQP_PORT)" -amqp-exchange="$(EXCHANGE)" -amqp-declare-queue=true
 
